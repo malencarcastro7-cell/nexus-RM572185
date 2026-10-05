@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: BSD-3-Clause
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+*.db
+.venv/
+venv/
+node_modules/
+frontend/dist/
+.DS_Store
+.vscode/
+.idea/

@@ -1,0 +1,190 @@
+{
+  "SchemaVersion": 2,
+  "ArtifactName": "registry.nexusbank.demo/api-pagamentos:2.4.1",
+  "ArtifactType": "container_image",
+  "Results": [
+    {
+      "Target": "registry.nexusbank.demo/api-pagamentos:2.4.1 (ubuntu 22.04)",
+      "Class": "os-pkgs",
+      "Type": "ubuntu",
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2023-0286",
+          "PkgName": "libssl3",
+          "InstalledVersion": "3.0.2-0ubuntu1.7",
+          "FixedVersion": "3.0.2-0ubuntu1.8",
+          "Severity": "HIGH",
+          "Title": "openssl: X.400 address type confusion in X.509 GeneralName",
+          "Description": "There is a type confusion vulnerability relating to X.400 address processing inside an X.509 GeneralName.",
+          "CweIDs": [
+            "CWE-843"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V3Score": 7.4
+            }
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-0286"
+        },
+        {
+          "VulnerabilityID": "CVE-2023-4911",
+          "PkgName": "libc6",
+          "InstalledVersion": "2.35-0ubuntu3.1",
+          "FixedVersion": "2.35-0ubuntu3.4",
+          "Severity": "HIGH",
+          "Title": "glibc: buffer overflow in ld.so leading to privilege escalation (Looney Tunables)",
+          "Description": "A buffer overflow was discovered in the GNU C Library's dynamic loader ld.so while processing the GLIBC_TUNABLES environment variable.",
+          "CweIDs": [
+            "CWE-787"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V3Score": 7.8
+            }
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-4911"
+        },
+        {
+          "VulnerabilityID": "CVE-2016-2781",
+          "PkgName": "coreutils",
+          "InstalledVersion": "8.32-4.1ubuntu1",
+          "FixedVersion": "",
+          "Severity": "LOW",
+          "Title": "coreutils: Non-privileged session can escape to the parent session in chroot",
+          "Description": "chroot in GNU coreutils, when used with --userspec, allows local users to escape to the parent session.",
+          "CweIDs": [
+            "CWE-20"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V3Score": 6.5
+            }
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2016-2781"
+        },
+        {
+          "VulnerabilityID": "CVE-2022-3219",
+          "PkgName": "gpgv",
+          "InstalledVersion": "2.2.27-3ubuntu2.1",
+          "FixedVersion": "",
+          "Severity": "LOW",
+          "Title": "gnupg: denial of service issue (resource consumption) using compressed packets",
+          "Description": "GnuPG can be made to spin on a relatively small input by crafting a public key with thousands of signatures attached.",
+          "CweIDs": [
+            "CWE-787"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V3Score": 3.3
+            }
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-3219"
+        }
+      ]
+    },
+    {
+      "Target": "app/api-pagamentos.jar",
+      "Class": "lang-pkgs",
+      "Type": "jar",
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2021-44228",
+          "PkgName": "org.apache.logging.log4j:log4j-core",
+          "InstalledVersion": "2.14.1",
+          "FixedVersion": "2.15.0, 2.17.1",
+          "Severity": "CRITICAL",
+          "Title": "log4j-core: Remote code execution in Log4j 2.x when logs contain an attacker-controlled string value (Log4Shell)",
+          "Description": "Apache Log4j2 JNDI features do not protect against attacker controlled LDAP and other JNDI related endpoints. An attacker who can control log messages can execute arbitrary code loaded from LDAP servers.",
+          "CweIDs": [
+            "CWE-917"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V3Score": 10.0
+            }
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2021-44228"
+        },
+        {
+          "VulnerabilityID": "CVE-2022-22965",
+          "PkgName": "org.springframework:spring-beans",
+          "InstalledVersion": "5.3.17",
+          "FixedVersion": "5.3.18",
+          "Severity": "CRITICAL",
+          "Title": "spring-framework: RCE via Data Binding on JDK 9+ (Spring4Shell)",
+          "Description": "A Spring MVC or Spring WebFlux application running on JDK 9+ may be vulnerable to remote code execution (RCE) via data binding.",
+          "CweIDs": [
+            "CWE-94"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V3Score": 9.8
+            }
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-22965"
+        },
+        {
+          "VulnerabilityID": "CVE-2022-1471",
+          "PkgName": "org.yaml:snakeyaml",
+          "InstalledVersion": "1.33",
+          "FixedVersion": "2.0",
+          "Severity": "HIGH",
+          "Title": "snakeyaml: Constructor Deserialization Remote Code Execution",
+          "Description": "SnakeYaml's Constructor() class does not restrict types which can be instantiated during deserialization.",
+          "CweIDs": [
+            "CWE-502"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V3Score": 8.3
+            }
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-1471"
+        },
+        {
+          "VulnerabilityID": "CVE-2023-44487",
+          "PkgName": "io.netty:netty-codec-http2",
+          "InstalledVersion": "4.1.94.Final",
+          "FixedVersion": "4.1.100.Final",
+          "Severity": "HIGH",
+          "Title": "HTTP/2: Multiple HTTP/2 enabled web servers are vulnerable to a DDoS attack (Rapid Reset Attack)",
+          "Description": "The HTTP/2 protocol allows a denial of service (server resource consumption) because request cancellation can reset many streams quickly.",
+          "CweIDs": [
+            "CWE-400"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V3Score": 7.5
+            }
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-44487"
+        }
+      ]
+    },
+    {
+      "Target": "app/lib/legacy-audit-1.2.jar",
+      "Class": "lang-pkgs",
+      "Type": "jar",
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2021-44228",
+          "PkgName": "org.apache.logging.log4j:log4j-core",
+          "InstalledVersion": "2.14.1",
+          "FixedVersion": "2.15.0, 2.17.1",
+          "Severity": "CRITICAL",
+          "Title": "log4j-core: Remote code execution in Log4j 2.x when logs contain an attacker-controlled string value (Log4Shell)",
+          "Description": "Apache Log4j2 JNDI features do not protect against attacker controlled LDAP and other JNDI related endpoints. An attacker who can control log messages can execute arbitrary code loaded from LDAP servers.",
+          "CweIDs": [
+            "CWE-917"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V3Score": 10.0
+            }
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2021-44228"
+        }
+      ]
+    }
+  ]
+}

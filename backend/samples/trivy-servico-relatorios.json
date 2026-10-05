@@ -1,0 +1,93 @@
+{
+  "SchemaVersion": 2,
+  "ArtifactName": "registry.nexusbank.demo/servico-relatorios:1.8.0",
+  "ArtifactType": "container_image",
+  "Results": [
+    {
+      "Target": "registry.nexusbank.demo/servico-relatorios:1.8.0 (ubuntu 22.04)",
+      "Class": "os-pkgs",
+      "Type": "ubuntu",
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2016-2781",
+          "PkgName": "coreutils",
+          "InstalledVersion": "8.32-4.1ubuntu1",
+          "FixedVersion": "",
+          "Severity": "LOW",
+          "Title": "coreutils: Non-privileged session can escape to the parent session in chroot",
+          "Description": "chroot in GNU coreutils, when used with --userspec, allows local users to escape to the parent session.",
+          "CweIDs": [
+            "CWE-20"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V3Score": 6.5
+            }
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2016-2781"
+        },
+        {
+          "VulnerabilityID": "CVE-2023-0286",
+          "PkgName": "libssl3",
+          "InstalledVersion": "3.0.2-0ubuntu1.7",
+          "FixedVersion": "3.0.2-0ubuntu1.8",
+          "Severity": "HIGH",
+          "Title": "openssl: X.400 address type confusion in X.509 GeneralName",
+          "Description": "There is a type confusion vulnerability relating to X.400 address processing inside an X.509 GeneralName.",
+          "CweIDs": [
+            "CWE-843"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V3Score": 7.4
+            }
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2023-0286"
+        }
+      ]
+    },
+    {
+      "Target": "app/servico-relatorios.jar",
+      "Class": "lang-pkgs",
+      "Type": "jar",
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2022-42889",
+          "PkgName": "org.apache.commons:commons-text",
+          "InstalledVersion": "1.9",
+          "FixedVersion": "1.10.0",
+          "Severity": "CRITICAL",
+          "Title": "commons-text: variable interpolation RCE (Text4Shell)",
+          "Description": "Apache Commons Text performs variable interpolation, allowing properties to be dynamically evaluated and expanded. Lookups such as script, dns and url can lead to remote code execution.",
+          "CweIDs": [
+            "CWE-94"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V3Score": 9.8
+            }
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2022-42889"
+        },
+        {
+          "VulnerabilityID": "CVE-2021-44228",
+          "PkgName": "org.apache.logging.log4j:log4j-core",
+          "InstalledVersion": "2.14.1",
+          "FixedVersion": "2.15.0, 2.17.1",
+          "Severity": "CRITICAL",
+          "Title": "log4j-core: Remote code execution in Log4j 2.x when logs contain an attacker-controlled string value (Log4Shell)",
+          "Description": "Apache Log4j2 JNDI features do not protect against attacker controlled LDAP and other JNDI related endpoints. An attacker who can control log messages can execute arbitrary code loaded from LDAP servers.",
+          "CweIDs": [
+            "CWE-917"
+          ],
+          "CVSS": {
+            "nvd": {
+              "V3Score": 10.0
+            }
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2021-44228"
+        }
+      ]
+    }
+  ]
+}

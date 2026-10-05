@@ -1,0 +1,212 @@
+{
+  "_comment": "Base de conhecimento usada pela abordagem RAG do NEXUS. Cada CWE é ligado à categoria do OWASP Top 10 (2021) e a técnicas do MITRE ATT&CK. O conteúdo é recuperado e enviado à IA como contexto, e também alimenta o modo offline.",
+  "cwe": {
+    "CWE-89": {
+      "name": "SQL Injection",
+      "owasp": "A03:2021 - Injection",
+      "attack": [{"id": "T1190", "name": "Exploit Public-Facing Application"}, {"id": "T1005", "name": "Data from Local System"}],
+      "summary": "Dados enviados pelo usuário são concatenados diretamente em uma consulta SQL, permitindo que o atacante altere a lógica da consulta.",
+      "impact": "Leitura, alteração ou exclusão de dados do banco, bypass de autenticação e, em alguns SGBDs, execução de comandos no servidor.",
+      "remediation": ["Usar consultas parametrizadas (prepared statements) ou ORM em todas as consultas.", "Validar entradas com lista de valores permitidos (allowlist).", "Executar a aplicação com usuário de banco de menor privilégio.", "Ativar WAF com regras de SQLi como camada adicional, não como correção."],
+      "secure_example": {"language": "java", "code": "// INSEGURO: \"SELECT * FROM extrato WHERE conta = '\" + conta + \"'\"\nString sql = \"SELECT * FROM extrato WHERE conta = ?\";\ntry (PreparedStatement ps = conn.prepareStatement(sql)) {\n    ps.setString(1, conta);\n    ResultSet rs = ps.executeQuery();\n}"}
+    },
+    "CWE-79": {
+      "name": "Cross-Site Scripting (XSS)",
+      "owasp": "A03:2021 - Injection",
+      "attack": [{"id": "T1189", "name": "Drive-by Compromise"}, {"id": "T1539", "name": "Steal Web Session Cookie"}],
+      "summary": "A aplicação devolve dados do usuário para o navegador sem codificação adequada, permitindo a execução de JavaScript malicioso no contexto da vítima.",
+      "impact": "Roubo de sessão, captura de credenciais, ações em nome do usuário e desfiguração da página.",
+      "remediation": ["Codificar a saída de acordo com o contexto (HTML, atributo, JavaScript, URL).", "Usar frameworks com auto-escape (React, Thymeleaf) e evitar innerHTML/th:utext.", "Definir Content-Security-Policy restritiva.", "Marcar cookies de sessão como HttpOnly."],
+      "secure_example": {"language": "java", "code": "// Thymeleaf: th:text faz escape automático\n<span th:text=\"${termoBusca}\"></span>\n\n// Em código Java, use o OWASP Java Encoder\nString seguro = Encode.forHtml(termoBusca);"}
+    },
+    "CWE-502": {
+      "name": "Desserialização de dados não confiáveis",
+      "owasp": "A08:2021 - Software and Data Integrity Failures",
+      "attack": [{"id": "T1190", "name": "Exploit Public-Facing Application"}, {"id": "T1059", "name": "Command and Scripting Interpreter"}],
+      "summary": "A aplicação desserializa dados controlados pelo atacante, o que pode instanciar classes perigosas e levar à execução remota de código.",
+      "impact": "Execução remota de código (RCE) com os privilégios da aplicação.",
+      "remediation": ["Atualizar a biblioteca para a versão corrigida.", "Não desserializar dados de fontes não confiáveis; preferir formatos simples (JSON com schema).", "Usar listas de classes permitidas na desserialização."],
+      "secure_example": {"language": "java", "code": "// SnakeYAML 2.x: use SafeConstructor para carregar apenas tipos básicos\nYaml yaml = new Yaml(new SafeConstructor(new LoaderOptions()));\nMap<String, Object> dados = yaml.load(entrada);"}
+    },
+    "CWE-917": {
+      "name": "Expression Language Injection",
+      "owasp": "A03:2021 - Injection",
+      "attack": [{"id": "T1190", "name": "Exploit Public-Facing Application"}, {"id": "T1059", "name": "Command and Scripting Interpreter"}],
+      "summary": "Entrada do usuário é avaliada como expressão (ex.: lookups JNDI no Log4j), permitindo carregar e executar código remoto.",
+      "impact": "Execução remota de código sem autenticação.",
+      "remediation": ["Atualizar a biblioteca para a versão corrigida.", "Bloquear saída de rede (egress) não necessária a partir dos servidores.", "Desativar recursos de lookup/avaliação de expressões em dados de entrada."],
+      "secure_example": {"language": "xml", "code": "<!-- pom.xml: Log4j 2.17.1+ remove o lookup JNDI por padrão -->\n<dependency>\n  <groupId>org.apache.logging.log4j</groupId>\n  <artifactId>log4j-core</artifactId>\n  <version>2.17.1</version>\n</dependency>"}
+    },
+    "CWE-94": {
+      "name": "Injeção de código",
+      "owasp": "A03:2021 - Injection",
+      "attack": [{"id": "T1190", "name": "Exploit Public-Facing Application"}, {"id": "T1059", "name": "Command and Scripting Interpreter"}],
+      "summary": "A aplicação monta e executa código a partir de dados controláveis pelo atacante (ex.: interpolação de strings no Commons Text, binding de parâmetros no Spring).",
+      "impact": "Execução remota de código com os privilégios da aplicação.",
+      "remediation": ["Atualizar a biblioteca para a versão corrigida.", "Nunca interpolar ou avaliar entrada do usuário.", "Restringir campos aceitos em data binding (allowlist)."],
+      "secure_example": {"language": "java", "code": "// Spring: restrinja os campos que podem ser vinculados\n@InitBinder\npublic void initBinder(WebDataBinder binder) {\n    binder.setAllowedFields(\"nome\", \"email\");\n}"}
+    },
+    "CWE-400": {
+      "name": "Consumo descontrolado de recursos",
+      "owasp": "A06:2021 - Vulnerable and Outdated Components",
+      "attack": [{"id": "T1499", "name": "Endpoint Denial of Service"}],
+      "summary": "O componente não limita recursos consumidos por requisição, permitindo negação de serviço (ex.: HTTP/2 Rapid Reset).",
+      "impact": "Indisponibilidade do serviço.",
+      "remediation": ["Atualizar o componente.", "Configurar limites de streams/conexões e rate limiting no proxy de borda."],
+      "secure_example": {"language": "xml", "code": "<dependency>\n  <groupId>io.netty</groupId>\n  <artifactId>netty-codec-http2</artifactId>\n  <version>4.1.100.Final</version>\n</dependency>"}
+    },
+    "CWE-787": {
+      "name": "Escrita fora dos limites (Out-of-bounds Write)",
+      "owasp": "A06:2021 - Vulnerable and Outdated Components",
+      "attack": [{"id": "T1068", "name": "Exploitation for Privilege Escalation"}],
+      "summary": "Falha de memória que permite escrever além do buffer alocado, podendo corromper memória ou executar código.",
+      "impact": "Escalonamento de privilégios, travamento ou execução de código.",
+      "remediation": ["Atualizar o pacote do sistema operacional / biblioteca.", "Reconstruir a imagem do container a partir de uma imagem base atualizada."],
+      "secure_example": {"language": "dockerfile", "code": "# Reconstrua a partir de uma imagem base atualizada\nFROM eclipse-temurin:17-jre-jammy\nRUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*"}
+    },
+    "CWE-843": {
+      "name": "Confusão de tipos (Type Confusion)",
+      "owasp": "A06:2021 - Vulnerable and Outdated Components",
+      "attack": [{"id": "T1557", "name": "Adversary-in-the-Middle"}],
+      "summary": "Erro de confusão de tipos na biblioteca criptográfica que pode permitir leitura de memória ou negação de serviço.",
+      "impact": "Vazamento de memória ou indisponibilidade em conexões TLS.",
+      "remediation": ["Atualizar o OpenSSL para a versão corrigida.", "Reconstruir a imagem do container."],
+      "secure_example": {"language": "dockerfile", "code": "RUN apt-get update && apt-get install -y --only-upgrade openssl libssl3"}
+    },
+    "CWE-798": {
+      "name": "Credenciais embutidas no código",
+      "owasp": "A07:2021 - Identification and Authentication Failures",
+      "attack": [{"id": "T1552.001", "name": "Unsecured Credentials: Credentials In Files"}],
+      "summary": "Senha, token ou chave aparece em texto claro no código-fonte.",
+      "impact": "Qualquer pessoa com acesso ao repositório obtém a credencial.",
+      "remediation": ["Remover a credencial do código e do histórico do Git.", "Revogar e rotacionar a credencial.", "Usar cofre de segredos (Vault, AWS Secrets Manager) ou variáveis de ambiente."],
+      "secure_example": {"language": "java", "code": "String senha = System.getenv(\"DB_PASSWORD\");\nif (senha == null) throw new IllegalStateException(\"DB_PASSWORD não definido\");"}
+    },
+    "CWE-328": {
+      "name": "Hash criptográfico fraco",
+      "owasp": "A02:2021 - Cryptographic Failures",
+      "attack": [{"id": "T1110.002", "name": "Brute Force: Password Cracking"}],
+      "summary": "Uso de algoritmos de hash obsoletos (MD5, SHA-1) suscetíveis a colisão e quebra rápida.",
+      "impact": "Senhas ou assinaturas podem ser quebradas ou forjadas.",
+      "remediation": ["Para senhas, usar bcrypt, scrypt ou Argon2.", "Para integridade, usar SHA-256 ou superior."],
+      "secure_example": {"language": "java", "code": "PasswordEncoder encoder = new BCryptPasswordEncoder(12);\nString hash = encoder.encode(senha);"}
+    },
+    "CWE-338": {
+      "name": "Gerador de números pseudoaleatórios fraco",
+      "owasp": "A02:2021 - Cryptographic Failures",
+      "attack": [{"id": "T1606", "name": "Forge Web Credentials"}],
+      "summary": "Uso de gerador previsível (java.util.Random) para valores de segurança como tokens.",
+      "impact": "Tokens e identificadores podem ser previstos.",
+      "remediation": ["Usar SecureRandom para qualquer valor sensível."],
+      "secure_example": {"language": "java", "code": "SecureRandom rnd = new SecureRandom();\nbyte[] token = new byte[32];\nrnd.nextBytes(token);"}
+    },
+    "CWE-693": {
+      "name": "Falha em mecanismo de proteção (cabeçalhos de segurança)",
+      "owasp": "A05:2021 - Security Misconfiguration",
+      "attack": [{"id": "T1189", "name": "Drive-by Compromise"}],
+      "summary": "Cabeçalhos de segurança HTTP ausentes (CSP, X-Content-Type-Options), reduzindo defesas do navegador.",
+      "impact": "Aumenta a chance de sucesso de XSS e outros ataques no navegador.",
+      "remediation": ["Configurar Content-Security-Policy, X-Content-Type-Options: nosniff e demais cabeçalhos no servidor ou proxy."],
+      "secure_example": {"language": "nginx", "code": "add_header Content-Security-Policy \"default-src 'self'\" always;\nadd_header X-Content-Type-Options \"nosniff\" always;\nadd_header X-Frame-Options \"DENY\" always;"}
+    },
+    "CWE-1004": {
+      "name": "Cookie sensível sem flag HttpOnly",
+      "owasp": "A05:2021 - Security Misconfiguration",
+      "attack": [{"id": "T1539", "name": "Steal Web Session Cookie"}],
+      "summary": "Cookie de sessão acessível por JavaScript.",
+      "impact": "Em caso de XSS, a sessão pode ser roubada.",
+      "remediation": ["Definir HttpOnly, Secure e SameSite nos cookies de sessão."],
+      "secure_example": {"language": "properties", "code": "server.servlet.session.cookie.http-only=true\nserver.servlet.session.cookie.secure=true\nserver.servlet.session.cookie.same-site=strict"}
+    },
+    "CWE-200": {
+      "name": "Exposição de informação sensível",
+      "owasp": "A01:2021 - Broken Access Control",
+      "attack": [{"id": "T1592", "name": "Gather Victim Host Information"}],
+      "summary": "A aplicação revela informações internas (versões, comentários, stack traces).",
+      "impact": "Facilita o reconhecimento pelo atacante.",
+      "remediation": ["Remover comentários e banners de versão em produção.", "Usar páginas de erro genéricas."],
+      "secure_example": {"language": "nginx", "code": "server_tokens off;"}
+    },
+    "CWE-1035": {
+      "name": "Uso de componente com vulnerabilidade conhecida",
+      "owasp": "A06:2021 - Vulnerable and Outdated Components",
+      "attack": [{"id": "T1190", "name": "Exploit Public-Facing Application"}],
+      "summary": "Biblioteca de terceiros em versão com vulnerabilidade pública.",
+      "impact": "Depende da vulnerabilidade; o exploit costuma estar disponível publicamente.",
+      "remediation": ["Atualizar o componente para a versão corrigida.", "Manter inventário (SBOM) e atualizações automatizadas (Dependabot/Renovate)."],
+      "secure_example": {"language": "bash", "code": "npm install jquery@^3.5.0 --save"}
+    },
+    "CWE-22": {
+      "name": "Path Traversal",
+      "owasp": "A01:2021 - Broken Access Control",
+      "attack": [{"id": "T1083", "name": "File and Directory Discovery"}],
+      "summary": "Entrada do usuário é usada para montar caminhos de arquivo, permitindo acesso fora do diretório previsto.",
+      "impact": "Leitura ou escrita de arquivos arbitrários.",
+      "remediation": ["Normalizar o caminho e validar que permanece no diretório base.", "Usar identificadores em vez de nomes de arquivo."],
+      "secure_example": {"language": "java", "code": "Path base = Paths.get(\"/srv/arquivos\").toRealPath();\nPath alvo = base.resolve(nome).normalize();\nif (!alvo.startsWith(base)) throw new SecurityException(\"Caminho inválido\");"}
+    },
+    "CWE-78": {
+      "name": "OS Command Injection",
+      "owasp": "A03:2021 - Injection",
+      "attack": [{"id": "T1059", "name": "Command and Scripting Interpreter"}],
+      "summary": "Entrada do usuário é passada a um comando do sistema operacional.",
+      "impact": "Execução de comandos arbitrários no servidor.",
+      "remediation": ["Evitar chamar o shell; usar APIs nativas.", "Se inevitável, passar argumentos como lista e validar com allowlist."],
+      "secure_example": {"language": "java", "code": "new ProcessBuilder(\"ping\", \"-c\", \"1\", hostValidado).start();"}
+    },
+    "CWE-918": {
+      "name": "Server-Side Request Forgery (SSRF)",
+      "owasp": "A10:2021 - Server-Side Request Forgery",
+      "attack": [{"id": "T1190", "name": "Exploit Public-Facing Application"}, {"id": "T1552.005", "name": "Cloud Instance Metadata API"}],
+      "summary": "O servidor faz requisições para URLs controladas pelo atacante.",
+      "impact": "Acesso a serviços internos e a credenciais de metadados da nuvem.",
+      "remediation": ["Validar destinos com allowlist.", "Bloquear acesso a 169.254.169.254 e redes internas.", "Exigir IMDSv2 na AWS."],
+      "secure_example": {"language": "python", "code": "ALLOWED = {\"api.parceiro.com\"}\nif urlparse(url).hostname not in ALLOWED:\n    raise ValueError(\"destino não permitido\")"}
+    },
+    "CWE-611": {
+      "name": "XML External Entity (XXE)",
+      "owasp": "A05:2021 - Security Misconfiguration",
+      "attack": [{"id": "T1190", "name": "Exploit Public-Facing Application"}],
+      "summary": "Parser XML processa entidades externas.",
+      "impact": "Leitura de arquivos locais e SSRF.",
+      "remediation": ["Desativar DTD e entidades externas no parser."],
+      "secure_example": {"language": "java", "code": "DocumentBuilderFactory f = DocumentBuilderFactory.newInstance();\nf.setFeature(\"http://apache.org/xml/features/disallow-doctype-decl\", true);"}
+    },
+    "CWE-319": {
+      "name": "Transmissão em texto claro",
+      "owasp": "A02:2021 - Cryptographic Failures",
+      "attack": [{"id": "T1040", "name": "Network Sniffing"}],
+      "summary": "Dados sensíveis trafegam sem criptografia.",
+      "impact": "Interceptação de dados e credenciais.",
+      "remediation": ["Usar TLS 1.2+ em todas as conexões.", "Ativar HSTS."],
+      "secure_example": {"language": "nginx", "code": "add_header Strict-Transport-Security \"max-age=31536000; includeSubDomains\" always;"}
+    },
+    "CWE-117": {
+      "name": "Log Injection",
+      "owasp": "A09:2021 - Security Logging and Monitoring Failures",
+      "attack": [{"id": "T1070", "name": "Indicator Removal"}],
+      "summary": "Entrada do usuário gravada em log sem neutralização.",
+      "impact": "Forjar entradas de log e dificultar investigações.",
+      "remediation": ["Remover quebras de linha e caracteres de controle antes de registrar."],
+      "secure_example": {"language": "java", "code": "log.info(\"Usuário: {}\", usuario.replaceAll(\"[\\r\\n]\", \"_\"));"}
+    },
+    "CWE-489": {
+      "name": "Código de depuração ativo",
+      "owasp": "A05:2021 - Security Misconfiguration",
+      "attack": [{"id": "T1592", "name": "Gather Victim Host Information"}],
+      "summary": "Modo debug habilitado em produção.",
+      "impact": "Exposição de informações internas e, às vezes, execução de código.",
+      "remediation": ["Desativar debug em produção por configuração de ambiente."],
+      "secure_example": {"language": "properties", "code": "spring.devtools.restart.enabled=false\nserver.error.include-stacktrace=never"}
+    }
+  },
+  "default": {
+    "name": "Vulnerabilidade de segurança",
+    "owasp": "A06:2021 - Vulnerable and Outdated Components",
+    "attack": [{"id": "T1190", "name": "Exploit Public-Facing Application"}],
+    "summary": "Fraqueza de segurança identificada por scanner.",
+    "impact": "O impacto depende do contexto do ativo e da explorabilidade.",
+    "remediation": ["Aplicar a correção recomendada pelo fornecedor.", "Revisar o código ou configuração afetada."],
+    "secure_example": {"language": "text", "code": "Consulte a referência do fornecedor para o patch específico."}
+  }
+}

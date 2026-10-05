@@ -1,0 +1,228 @@
+{
+  "@version": "2.15.0",
+  "@generated": "Mon, 14 Sep 2026 10:12:00",
+  "site": [
+    {
+      "@name": "https://portal.nexusbank.demo",
+      "@host": "portal.nexusbank.demo",
+      "@port": "443",
+      "@ssl": "true",
+      "alerts": [
+        {
+          "pluginid": "40018",
+          "alert": "SQL Injection",
+          "name": "SQL Injection",
+          "riskcode": "3",
+          "confidence": "2",
+          "riskdesc": "",
+          "desc": "<p>SQL injection may be possible.</p>",
+          "instances": [
+            {
+              "uri": "https://portal.nexusbank.demo/extrato?conta=12345",
+              "method": "GET",
+              "param": "conta"
+            }
+          ],
+          "count": "1",
+          "solution": "<p>Do not trust client side input. Use prepared statements.</p>",
+          "otherinfo": "<p></p>",
+          "reference": "<p></p>",
+          "cweid": "89",
+          "wascid": "0"
+        },
+        {
+          "pluginid": "40012",
+          "alert": "Cross Site Scripting (Reflected)",
+          "name": "Cross Site Scripting (Reflected)",
+          "riskcode": "3",
+          "confidence": "2",
+          "riskdesc": "",
+          "desc": "<p>Cross-site Scripting (XSS) is an attack technique that involves echoing attacker-supplied code into a user's browser instance.</p>",
+          "instances": [
+            {
+              "uri": "https://portal.nexusbank.demo/busca?q=teste",
+              "method": "GET",
+              "param": "q"
+            },
+            {
+              "uri": "https://portal.nexusbank.demo/busca?q=cartao",
+              "method": "GET",
+              "param": "q"
+            }
+          ],
+          "count": "2",
+          "solution": "<p>Validate all input and encode output.</p>",
+          "otherinfo": "<p></p>",
+          "reference": "<p></p>",
+          "cweid": "79",
+          "wascid": "0"
+        },
+        {
+          "pluginid": "10003",
+          "alert": "Vulnerable JS Library",
+          "name": "Vulnerable JS Library",
+          "riskcode": "2",
+          "confidence": "3",
+          "riskdesc": "",
+          "desc": "<p>The identified library jquery, version 3.4.1 is vulnerable.</p>",
+          "instances": [
+            {
+              "uri": "https://portal.nexusbank.demo/static/js/jquery-3.4.1.min.js",
+              "method": "GET",
+              "param": ""
+            }
+          ],
+          "count": "1",
+          "solution": "<p>Upgrade to the latest version of jquery.</p>",
+          "otherinfo": "<p>CVE-2020-11022 CVE-2020-11023</p>",
+          "reference": "<p>https://nvd.nist.gov/vuln/detail/CVE-2020-11022</p>",
+          "cweid": "1035",
+          "wascid": "0"
+        },
+        {
+          "pluginid": "10038",
+          "alert": "Content Security Policy (CSP) Header Not Set",
+          "name": "Content Security Policy (CSP) Header Not Set",
+          "riskcode": "2",
+          "confidence": "3",
+          "riskdesc": "",
+          "desc": "<p>Content Security Policy (CSP) is an added layer of security that helps to detect and mitigate certain types of attacks.</p>",
+          "instances": [
+            {
+              "uri": "https://portal.nexusbank.demo/",
+              "method": "GET",
+              "param": ""
+            },
+            {
+              "uri": "https://portal.nexusbank.demo/login",
+              "method": "GET",
+              "param": ""
+            },
+            {
+              "uri": "https://portal.nexusbank.demo/extrato",
+              "method": "GET",
+              "param": ""
+            },
+            {
+              "uri": "https://portal.nexusbank.demo/busca",
+              "method": "GET",
+              "param": ""
+            },
+            {
+              "uri": "https://portal.nexusbank.demo/perfil",
+              "method": "GET",
+              "param": ""
+            }
+          ],
+          "count": "5",
+          "solution": "<p>Ensure that your web server is configured to set the Content-Security-Policy header.</p>",
+          "otherinfo": "<p></p>",
+          "reference": "<p></p>",
+          "cweid": "693",
+          "wascid": "0"
+        },
+        {
+          "pluginid": "10010",
+          "alert": "Cookie No HttpOnly Flag",
+          "name": "Cookie No HttpOnly Flag",
+          "riskcode": "1",
+          "confidence": "2",
+          "riskdesc": "",
+          "desc": "<p>A cookie has been set without the HttpOnly flag.</p>",
+          "instances": [
+            {
+              "uri": "https://portal.nexusbank.demo/login",
+              "method": "GET",
+              "param": ""
+            },
+            {
+              "uri": "https://portal.nexusbank.demo/",
+              "method": "GET",
+              "param": ""
+            }
+          ],
+          "count": "2",
+          "solution": "<p>Ensure that the HttpOnly flag is set for all cookies.</p>",
+          "otherinfo": "<p></p>",
+          "reference": "<p></p>",
+          "cweid": "1004",
+          "wascid": "0"
+        },
+        {
+          "pluginid": "10021",
+          "alert": "X-Content-Type-Options Header Missing",
+          "name": "X-Content-Type-Options Header Missing",
+          "riskcode": "1",
+          "confidence": "2",
+          "riskdesc": "",
+          "desc": "<p>The Anti-MIME-Sniffing header X-Content-Type-Options was not set to 'nosniff'.</p>",
+          "instances": [
+            {
+              "uri": "https://portal.nexusbank.demo/",
+              "method": "GET",
+              "param": ""
+            },
+            {
+              "uri": "https://portal.nexusbank.demo/login",
+              "method": "GET",
+              "param": ""
+            },
+            {
+              "uri": "https://portal.nexusbank.demo/static/js/app.js",
+              "method": "GET",
+              "param": ""
+            },
+            {
+              "uri": "https://portal.nexusbank.demo/static/css/main.css",
+              "method": "GET",
+              "param": ""
+            },
+            {
+              "uri": "https://portal.nexusbank.demo/extrato",
+              "method": "GET",
+              "param": ""
+            },
+            {
+              "uri": "https://portal.nexusbank.demo/busca",
+              "method": "GET",
+              "param": ""
+            }
+          ],
+          "count": "6",
+          "solution": "<p>Ensure that the application/web server sets the X-Content-Type-Options header to 'nosniff'.</p>",
+          "otherinfo": "<p></p>",
+          "reference": "<p></p>",
+          "cweid": "693",
+          "wascid": "0"
+        },
+        {
+          "pluginid": "10027",
+          "alert": "Information Disclosure - Suspicious Comments",
+          "name": "Information Disclosure - Suspicious Comments",
+          "riskcode": "0",
+          "confidence": "1",
+          "riskdesc": "",
+          "desc": "<p>The response appears to contain suspicious comments which may help an attacker.</p>",
+          "instances": [
+            {
+              "uri": "https://portal.nexusbank.demo/static/js/app.js",
+              "method": "GET",
+              "param": ""
+            },
+            {
+              "uri": "https://portal.nexusbank.demo/login",
+              "method": "GET",
+              "param": ""
+            }
+          ],
+          "count": "2",
+          "solution": "<p>Remove all comments that return information that may help an attacker.</p>",
+          "otherinfo": "<p></p>",
+          "reference": "<p></p>",
+          "cweid": "200",
+          "wascid": "0"
+        }
+      ]
+    }
+  ]
+}

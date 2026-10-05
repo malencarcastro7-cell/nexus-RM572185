@@ -1,0 +1,73 @@
+{
+  "total": 6,
+  "p": 1,
+  "ps": 100,
+  "issues": [
+    {
+      "key": "AYx1",
+      "rule": "javasecurity:S3649",
+      "severity": "BLOCKER",
+      "component": "br.com.nexusbank:portal-clientes:src/main/java/br/com/nexusbank/portal/extrato/ExtratoRepository.java",
+      "project": "br.com.nexusbank:portal-clientes",
+      "line": 58,
+      "message": "Change this code to not construct SQL queries directly from user-controlled data.",
+      "type": "VULNERABILITY",
+      "status": "OPEN"
+    },
+    {
+      "key": "AYx2",
+      "rule": "javasecurity:S5131",
+      "severity": "BLOCKER",
+      "component": "br.com.nexusbank:portal-clientes:src/main/java/br/com/nexusbank/portal/busca/BuscaController.java",
+      "project": "br.com.nexusbank:portal-clientes",
+      "line": 34,
+      "message": "Change this code to not reflect user-controlled data.",
+      "type": "VULNERABILITY",
+      "status": "OPEN"
+    },
+    {
+      "key": "AYx3",
+      "rule": "java:S4790",
+      "severity": "CRITICAL",
+      "component": "br.com.nexusbank:portal-clientes:src/main/java/br/com/nexusbank/portal/util/HashUtil.java",
+      "project": "br.com.nexusbank:portal-clientes",
+      "line": 21,
+      "message": "Make sure this weak hash algorithm (MD5) is not used in a sensitive context.",
+      "type": "VULNERABILITY",
+      "status": "OPEN"
+    },
+    {
+      "key": "AYx4",
+      "rule": "java:S2245",
+      "severity": "MAJOR",
+      "component": "br.com.nexusbank:portal-clientes:src/main/java/br/com/nexusbank/portal/auth/TokenGenerator.java",
+      "project": "br.com.nexusbank:portal-clientes",
+      "line": 17,
+      "message": "Make sure that using this pseudorandom number generator is safe here.",
+      "type": "VULNERABILITY",
+      "status": "OPEN"
+    },
+    {
+      "key": "AYx5",
+      "rule": "java:S2068",
+      "severity": "BLOCKER",
+      "component": "br.com.nexusbank:portal-clientes:src/test/java/br/com/nexusbank/portal/TestDatabaseConfig.java",
+      "project": "br.com.nexusbank:portal-clientes",
+      "line": 12,
+      "message": "'password' detected in this expression, review this potentially hard-coded credential.",
+      "type": "VULNERABILITY",
+      "status": "OPEN"
+    },
+    {
+      "key": "AYx6",
+      "rule": "java:S5332",
+      "severity": "MINOR",
+      "component": "br.com.nexusbank:portal-clientes:src/main/java/br/com/nexusbank/portal/integracao/CepClient.java",
+      "project": "br.com.nexusbank:portal-clientes",
+      "line": 40,
+      "message": "Using http protocol is insecure. Use https instead.",
+      "type": "VULNERABILITY",
+      "status": "OPEN"
+    }
+  ]
+}

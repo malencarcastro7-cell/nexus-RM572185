@@ -1,0 +1,165 @@
+{
+  "ok": false,
+  "projectName": "br.com.nexusbank:api-pagamentos",
+  "packageManager": "maven",
+  "displayTargetFile": "pom.xml",
+  "dependencyCount": 87,
+  "vulnerabilities": [
+    {
+      "id": "SNYK-JAVA-ORGAPACHELOGGINGLOG4J-2314720",
+      "title": "Remote Code Execution (RCE)",
+      "severity": "critical",
+      "cvssScore": 10.0,
+      "packageName": "org.apache.logging.log4j:log4j-core",
+      "version": "2.14.1",
+      "fixedIn": [
+        "2.15.0"
+      ],
+      "identifiers": {
+        "CVE": [
+          "CVE-2021-44228"
+        ],
+        "CWE": [
+          "CWE-502"
+        ]
+      },
+      "exploit": "Mature",
+      "description": "Affected versions of this package are vulnerable to Remote Code Execution (RCE) via JNDI lookups in log messages.",
+      "from": [
+        "br.com.nexusbank:api-pagamentos@2.4.1",
+        "org.apache.logging.log4j:log4j-core@2.14.1"
+      ],
+      "references": [
+        {
+          "title": "NVD",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2021-44228"
+        }
+      ]
+    },
+    {
+      "id": "SNYK-JAVA-ORGSPRINGFRAMEWORK-2436751",
+      "title": "Remote Code Execution",
+      "severity": "critical",
+      "cvssScore": 9.8,
+      "packageName": "org.springframework:spring-beans",
+      "version": "5.3.17",
+      "fixedIn": [
+        "5.3.18"
+      ],
+      "identifiers": {
+        "CVE": [
+          "CVE-2022-22965"
+        ],
+        "CWE": [
+          "CWE-94"
+        ]
+      },
+      "exploit": "Mature",
+      "description": "Affected versions are vulnerable to RCE via data binding (Spring4Shell).",
+      "from": [
+        "br.com.nexusbank:api-pagamentos@2.4.1",
+        "org.springframework:spring-webmvc@5.3.17",
+        "org.springframework:spring-beans@5.3.17"
+      ],
+      "references": [
+        {
+          "title": "NVD",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-22965"
+        }
+      ]
+    },
+    {
+      "id": "SNYK-JAVA-ORGYAML-3152153",
+      "title": "Arbitrary Code Execution",
+      "severity": "high",
+      "cvssScore": 8.3,
+      "packageName": "org.yaml:snakeyaml",
+      "version": "1.33",
+      "fixedIn": [
+        "2.0"
+      ],
+      "identifiers": {
+        "CVE": [
+          "CVE-2022-1471"
+        ],
+        "CWE": [
+          "CWE-502"
+        ]
+      },
+      "exploit": "Proof of Concept",
+      "description": "Unsafe deserialization via the Constructor class.",
+      "from": [
+        "br.com.nexusbank:api-pagamentos@2.4.1",
+        "org.yaml:snakeyaml@1.33"
+      ],
+      "references": [
+        {
+          "title": "NVD",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-1471"
+        }
+      ]
+    },
+    {
+      "id": "SNYK-JAVA-COMFASTERXMLJACKSONCORE-2421244",
+      "title": "Denial of Service (DoS)",
+      "severity": "high",
+      "cvssScore": 7.5,
+      "packageName": "com.fasterxml.jackson.core:jackson-databind",
+      "version": "2.12.3",
+      "fixedIn": [
+        "2.12.6.1"
+      ],
+      "identifiers": {
+        "CVE": [
+          "CVE-2020-36518"
+        ],
+        "CWE": [
+          "CWE-787"
+        ]
+      },
+      "exploit": "Proof of Concept",
+      "description": "Deeply nested objects cause a StackOverflowError.",
+      "from": [
+        "br.com.nexusbank:api-pagamentos@2.4.1",
+        "com.fasterxml.jackson.core:jackson-databind@2.12.3"
+      ],
+      "references": [
+        {
+          "title": "NVD",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2020-36518"
+        }
+      ]
+    },
+    {
+      "id": "SNYK-JAVA-JUNIT-1017047",
+      "title": "Information Exposure",
+      "severity": "medium",
+      "cvssScore": 4.4,
+      "packageName": "junit:junit",
+      "version": "4.12",
+      "fixedIn": [
+        "4.13.1"
+      ],
+      "identifiers": {
+        "CVE": [
+          "CVE-2020-15250"
+        ],
+        "CWE": [
+          "CWE-200"
+        ]
+      },
+      "exploit": "Not Defined",
+      "description": "TemporaryFolder creates files readable by other local users.",
+      "from": [
+        "br.com.nexusbank:api-pagamentos@2.4.1",
+        "junit:junit@4.12"
+      ],
+      "references": [
+        {
+          "title": "NVD",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2020-15250"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "_comment": "Inteligência de ameaças embarcada (offline). 'kev' = CVEs do catálogo CISA Known Exploited Vulnerabilities; 'public_exploit' = CVEs com exploit/PoC público conhecido. Atualize periodicamente a partir de https://www.cisa.gov/known-exploited-vulnerabilities-catalog e do Exploit-DB.",
+  "kev": [
+    "CVE-2021-44228",
+    "CVE-2021-45046",
+    "CVE-2022-22965",
+    "CVE-2023-44487",
+    "CVE-2023-4911",
+    "CVE-2017-5638",
+    "CVE-2023-46604",
+    "CVE-2024-3400",
+    "CVE-2021-26855",
+    "CVE-2014-6271"
+  ],
+  "public_exploit": [
+    "CVE-2022-42889",
+    "CVE-2022-1471",
+    "CVE-2020-11022",
+    "CVE-2020-11023",
+    "CVE-2019-11358",
+    "CVE-2020-36518",
+    "CVE-2023-0286",
+    "CVE-2021-44228",
+    "CVE-2022-22965"
+  ]
+}

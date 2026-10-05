@@ -1,0 +1,53 @@
+/*
+ * SPDX-License-Identifier: BSD-3-Clause
+ * Copyright (c) 2026 Equipe NEXUS
+ * NEXUS - Application Security Posture Management orientado por IA.
+ * Distribuído sob a licença BSD 3-Clause. Veja LICENSE.md na raiz do projeto.
+ */
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Poppins", "Inter", ui-sans-serif, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-ink: #06060a;
+  --color-panel: #0f0f16;
+  --color-panel-2: #16161f;
+  --color-line: #24242f;
+  --color-muted: #8b8b9e;
+  --color-soft: #c9c9d6;
+  --color-violet: #7c3aed;
+  --color-azure: #3b82f6;
+
+  --color-p1: #f43f5e;
+  --color-p2: #fb923c;
+  --color-p3: #facc15;
+  --color-p4: #64748b;
+}
+
+html, body, #root { height: 100%; }
+body {
+  @apply bg-ink text-soft font-sans antialiased;
+}
+h1, h2, h3 { @apply font-display text-white; }
+
+@utility brand-gradient { background-image: linear-gradient(120deg, var(--color-violet), var(--color-azure)); }
+@utility brand-text {
+  background-image: linear-gradient(120deg, #a78bfa, #60a5fa);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+@utility panel { @apply bg-panel border border-line rounded-xl; }
+@utility btn { @apply inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition disabled:opacity-50 disabled:cursor-not-allowed; }
+@utility btn-primary { @apply btn brand-gradient text-white hover:brightness-110; }
+@utility btn-ghost { @apply btn border border-line text-soft hover:bg-panel-2 hover:text-white; }
+@utility input { @apply bg-panel-2 border border-line rounded-lg px-3 py-2 text-sm text-white placeholder:text-muted focus:outline-none focus:border-violet; }
+@utility label { @apply text-xs uppercase tracking-wider text-muted; }
+
+pre.code {
+  @apply font-mono text-xs leading-relaxed bg-ink border border-line rounded-lg p-3 overflow-x-auto text-[#d6d6ff];
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: #2a2a36; border-radius: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
