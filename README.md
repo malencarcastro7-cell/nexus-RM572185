@@ -1,8 +1,10 @@
 <!--
   SPDX-License-Identifier: BSD-3-Clause
-  Copyright (c) 2026 Equipe NEXUS
+  Copyright (c) 2026 Matheus de Alencar (RM572185)
 -->
 # NEXUS · Application Security Posture Management com IA
+
+**Integrante:** Matheus de Alencar · RM572185
 
 > O objetivo do NEXUS não é gerar mais alertas. É gerar decisões.
 
